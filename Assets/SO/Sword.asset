@@ -12,5 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55bf7d3889572be49a1f6219e47693b1, type: 3}
   m_Name: Sword
   m_EditorClassIdentifier: 
-  Texture: {fileID: 0}
-  Val: 0
+  itemType: 1
+  Texture: {fileID: 2800000, guid: 0c6271a290ef75b4c97d58746c86c5b8, type: 3}
+  Val: 15
+  Prefab: {fileID: 164718, guid: f990a7f182be91b41b7167bc5fdff7eb, type: 3}
