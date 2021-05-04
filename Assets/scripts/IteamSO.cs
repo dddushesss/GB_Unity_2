@@ -13,7 +13,7 @@ public class IteamSO : ScriptableObject
     }
 
     [SerializeField] public Type itemType;
-    [SerializeField] public Texture Texture;
+    [SerializeField] public Sprite Texture;
     [SerializeField] public int Val;
     [SerializeField] public GameObject Prefab;
 }

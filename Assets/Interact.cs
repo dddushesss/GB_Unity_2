@@ -2,17 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class interact : MonoBehaviour
+public class Interact : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private Inventory _playerInventory;
+    private Camera _camera;
+    [SerializeField] private GameObject tooltip;
+
     void Start()
     {
-        
+        _playerInventory = GetComponent<Inventory>();
+        _camera = Camera.main;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
+        var centerPoint = new Vector3(_camera.pixelWidth / 2, _camera.pixelHeight /2, 0);
+        Ray ray = _camera.ScreenPointToRay(centerPoint);
         
+        if (Physics.Raycast(ray, out var hit))
+        {
+            tooltip.SetActive(hit.collider.GetComponent<ItemController>());
+            if (Input.GetKeyDown(KeyCode.E) && hit.collider.GetComponent<ItemController>())
+            {
+                _playerInventory.PickUp(hit.collider.GetComponent<ItemController>().Iteam, hit.collider.gameObject);
+            }
+        }
     }
 }

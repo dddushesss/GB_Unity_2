@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class ItemController : MonoBehaviour
 {
-    [SerializeField] private IteamSO Iteam;
+    public IteamSO Iteam;
 
     private void Start()
     {
-        Instantiate(Iteam.Prefab, transform);
+        //Instantiate(Iteam.Prefab, transform);
     }
 }
