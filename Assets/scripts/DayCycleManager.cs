@@ -35,6 +35,7 @@ public class DayCycleManager : MonoBehaviour
        
         RenderSettings.skybox.Lerp(NightSkybox, DaySkybox, SkyboxCurve.Evaluate(TimeOfDay));
         RenderSettings.sun = SkyboxCurve.Evaluate(TimeOfDay) > 0.1f ? Sun : Moon;
+        RenderSettings.fogColor = new Color(1, 1, 1, 1 - SkyboxCurve.Evaluate(TimeOfDay));
         DynamicGI.UpdateEnvironment();
         
         var mainModule = Stars.main;
