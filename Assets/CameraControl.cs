@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class CameraControl : MonoBehaviour
 {
-
     public enum Smooth
     {
         Disabled = 0,
@@ -34,16 +33,17 @@ public class CameraControl : MonoBehaviour
 
             transform.LookAt(player);
 
-            if (Input.GetKey(KeyCode.E))
-            {
-                transform.RotateAround(player.position, Vector3.up, -sensitivity);
-            }
 
-            if (Input.GetKey(KeyCode.Q))
-            {
-                transform.RotateAround(player.position, Vector3.up, sensitivity);
-            }
+            transform.RotateAround(player.position, Vector3.up, sensitivity * Input.GetAxis("Mouse X"));
 
+
+            Transform transform1;
+            (transform1 = transform).RotateAround(player.position, Vector3.left, sensitivity * Input.GetAxis("Mouse Y"));
+
+            player.SetPositionAndRotation(player.position, new Quaternion(player.rotation.x, transform1.rotation.y, player.rotation.z, player.rotation.w));
+            
+            
+            
             var mouseWheel = Input.GetAxis("Mouse ScrollWheel");
             if (mouseWheel != 0)
             {
