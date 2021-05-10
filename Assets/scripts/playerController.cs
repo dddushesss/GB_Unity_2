@@ -6,23 +6,19 @@ using UnityEngine;
 public class playerController : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 0.5f;
-    [SerializeField] private float verticalSpeed = 0.05f;
+    [SerializeField] private float verticalSpeed = 0.5f;
     Rigidbody m_Rigidbody;
     Animator m_Animator;
-    CapsuleCollider m_Capsule;
     bool m_IsGrounded;
     float m_ForwardAmount;
-    private Camera _mainCamera;
 
 
     private void Start()
     {
         m_Animator = GetComponent<Animator>();
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Capsule = GetComponent<CapsuleCollider>();
         m_Rigidbody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY |
                                   RigidbodyConstraints.FreezeRotationZ;
-        _mainCamera = Camera.main;
     }
 
 
@@ -44,7 +40,18 @@ public class playerController : MonoBehaviour
         {
             m_Animator.SetBool("Crouch", false);
         }
-        
+
+        if (verticalMove > 0)
+        {
+            m_Animator.SetBool("OnGround", false);
+            m_Animator.SetFloat("Jump", verticalMove);
+        }
+        else
+        {
+            m_Animator.SetBool("OnGround", true);
+            m_Animator.SetFloat("Jump", verticalMove);
+            m_Animator.SetFloat("JumpLeg", verticalMove);
+        }
         
         m_Animator.SetFloat("Forward", forwardMove);
         m_Animator.SetFloat("Turn", sideMove);
