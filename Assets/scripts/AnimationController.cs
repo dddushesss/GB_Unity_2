@@ -37,14 +37,14 @@ public class AnimationController : MonoBehaviour
 
         var leftfoot = _animator.GetBoneTransform(HumanBodyBones.LeftFoot);
         var rightfoot = _animator.GetBoneTransform(HumanBodyBones.RightFoot);
-       SetLegIK(leftfoot, leftFootWeight, AvatarIKGoal.LeftFoot);
-       SetLegIK(rightfoot, rightFootWeight, AvatarIKGoal.RightFoot);
+        SetLegIK(leftfoot, leftFootWeight, AvatarIKGoal.LeftFoot);
+        SetLegIK(rightfoot, rightFootWeight, AvatarIKGoal.RightFoot);
     }
 
     private void SetLegIK(Transform foot, float weight, AvatarIKGoal ikGoal)
     {
         RaycastHit hit;
-        if (Physics.Raycast(foot.position, Vector3.down,out hit, 10f))
+        if (Physics.Raycast(foot.position, Vector3.down, out hit, 10f))
         {
             _animator.SetIKPosition(ikGoal, hit.point + legOffset);
             _animator.SetIKPositionWeight(ikGoal, weight);
